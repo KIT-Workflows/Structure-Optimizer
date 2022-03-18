@@ -1,0 +1,89 @@
+<WaNoTemplate>
+
+        <WaNoMeta>
+                <!-- <WaNoDropDown name="Hamiltonian" description = "xTB Hamiltonians options">
+                        <Entry id="0">GFN1-xTB</Entry>
+                        <Entry id="1" chosen="True">GFN2-xTB</Entry>
+                        <Entry id="2">GFN-FF</Entry>
+                </WaNoDropDown> 
+                <WaNoInt name="max-opt-cycles" description='The maximum number of optimization cycles'>1000</WaNoInt> -->
+                <Author>
+                        <Name> Celso R. C. Rego </Name>
+                        <Email>celsorego@kit.edu</Email>
+                </Author>
+                <Description>
+			This WaNo uses openbabel technology to generate conformers of a molecule.
+                </Description>
+                <Keyword>conformer</Keyword>
+        </WaNoMeta>
+
+        <WaNoRoot name="Conformer-gen">
+        
+        
+
+        <WaNoFile logical_filename="Input-File.xyz" name="Input-File" local="True">insert the .xyz file</WaNoFile>
+        <WaNoFloat name="RMSD-thr" description='Set RMSD threshold in Angstrom'>0.125</WaNoFloat>
+        <WaNoFloat name="E-thr" description='Set energy threshold between conformer pairs in kcal/mol.'>0.05</WaNoFloat>
+
+        
+        <WaNoDictBox name="Parameters">
+                
+                <WaNoDropDown name="Engine" description = "Code and its respective method">
+                        <Entry id="0" chosen="true">xTB-crest</Entry>
+                        <Entry id="1">RdKit</Entry>
+                </WaNoDropDown>
+
+                <WaNoDropDown visibility_condition="'%s' == 'xTB-crest'" visibility_var_path="Parameters.Engine" name="Solvent" description = "Parameterized solvents">
+                        <Entry id="0" chosen="True">water</Entry>
+                        <Entry id="1">acetone</Entry>
+                        <Entry id="2">benzene</Entry>
+                        <Entry id="3">dmso</Entry>
+                        <Entry id="4">thf</Entry>
+                        <Entry id="5">ether</Entry>
+                </WaNoDropDown>
+
+                <WaNoDropDown visibility_condition="'%s' == 'xTB-crest'" visibility_var_path="Parameters.Engine" name="Optimization level" description = "accuracy of the optimization">
+                        <Entry id="0" chosen="True">normal</Entry>
+                        <Entry id="1">tight</Entry>
+                        <Entry id="2">vtight</Entry>
+                        <Entry id="3">extreme</Entry>
+                        <Entry id="4">lax</Entry>
+                        <Entry id="5">loose</Entry>
+                        <Entry id="6">sloppy</Entry>
+                </WaNoDropDown>
+
+                <WaNoDropDown visibility_condition="'%s' == 'xTB-crest'" visibility_var_path="Parameters.Engine" name="Conformational-algo" description = "CREST conformational search algorithm">
+                        <Entry id="0" chosen="True">iMTD-GC</Entry>
+                        <Entry id="1">MTMD-GC</Entry>
+                        <Entry id="2">MF-MD-GC</Entry>
+                        <Entry id="3">iMTD-sMTD</Entry>
+                        <Entry id="4">Conformational entropy</Entry>
+                </WaNoDropDown>
+
+                <WaNoInt visibility_condition="'%s' == 'RdKit'" visibility_var_path="Parameters.Engine" name="nconf" description='number of conformers'>10</WaNoInt>
+                <WaNoInt visibility_condition="'%s' == 'RdKit'" visibility_var_path="Parameters.Engine" name="max-attempts" description='number of max attempts>'>50</WaNoInt>
+                <WaNoFloat visibility_condition="'%s' == 'RdKit'" visibility_var_path="Parameters.Engine" name="cluster-thr" description='cluster threshold>'>0.2</WaNoFloat>
+                <WaNoDropDown visibility_condition="'%s' == 'RdKit'" visibility_var_path="Parameters.Engine" name="cluster-algo" description = "cluster method">
+                        <Entry id="0" chosen="True">RSMD</Entry>
+                        <Entry id="1">TFD</Entry>
+                </WaNoDropDown>
+
+        </WaNoDictBox>
+
+        </WaNoRoot>
+
+        <WaNoExecCommand>
+                source  /home/ws/gt5111/miniconda3/etc/profile.d/conda.sh
+		conda activate
+                python conformer.py
+        </WaNoExecCommand>
+        <WaNoInputFiles>
+                <WaNoInputFile logical_filename="conformer.py">conformer.py</WaNoInputFile>
+                <WaNoInputFile logical_filename="crest.py">crest.py</WaNoInputFile>
+                <WaNoInputFile logical_filename="conf_rdkit.py">conf_rdkit.py</WaNoInputFile>
+        </WaNoInputFiles>
+
+        <WaNoOutputFiles>
+                <WaNoOutputFile>mol.tar.gz</WaNoOutputFile>
+        </WaNoOutputFiles>
+</WaNoTemplate>

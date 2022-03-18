@@ -1,0 +1,12 @@
+E-thr: 0.5
+Input-File: Input-File.xyz
+Parameters:
+  Conformational-algo: iMTD-GC
+  Engine: RdKit
+  Optimization level: normal
+  Solvent: water
+  cluster-algo: RSMD
+  cluster-thr: 0.2
+  max-attempts: 50
+  nconf: 10
+RMSD-thr: 2.0
