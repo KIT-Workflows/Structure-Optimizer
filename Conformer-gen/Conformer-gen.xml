@@ -23,8 +23,6 @@
 
         <WaNoFile logical_filename="Input-File.xyz" name="Input-File" local="True">insert the .xyz file</WaNoFile>
         <WaNoFloat name="RMSD-thr" description='Set RMSD threshold in Angstrom'>0.125</WaNoFloat>
-        <WaNoFloat name="E-thr" description='Set energy threshold between conformer pairs in kcal/mol.'>0.05</WaNoFloat>
-
         
         <WaNoDictBox name="Parameters">
                 
@@ -32,6 +30,8 @@
                         <Entry id="0" chosen="true">xTB-crest</Entry>
                         <Entry id="1">RdKit</Entry>
                 </WaNoDropDown>
+                
+                <WaNoFloat visibility_condition="'%s' == 'xTB-crest'" visibility_var_path="Parameters.Engine" name="E-thr" description='Set energy threshold between conformer pairs in kcal/mol.'>0.05</WaNoFloat>
 
                 <WaNoDropDown visibility_condition="'%s' == 'xTB-crest'" visibility_var_path="Parameters.Engine" name="Solvent" description = "Parameterized solvents">
                         <Entry id="0" chosen="True">water</Entry>
@@ -62,6 +62,7 @@
 
                 <WaNoInt visibility_condition="'%s' == 'RdKit'" visibility_var_path="Parameters.Engine" name="nconf" description='number of conformers'>10</WaNoInt>
                 <WaNoInt visibility_condition="'%s' == 'RdKit'" visibility_var_path="Parameters.Engine" name="max-attempts" description='number of max attempts>'>50</WaNoInt>
+                <WaNoInt visibility_condition="'%s' == 'RdKit'" visibility_var_path="Parameters.Engine" name="max-opt" description='max number of optimization steps'>50</WaNoInt>
                 <WaNoFloat visibility_condition="'%s' == 'RdKit'" visibility_var_path="Parameters.Engine" name="cluster-thr" description='cluster threshold>'>0.2</WaNoFloat>
                 <WaNoDropDown visibility_condition="'%s' == 'RdKit'" visibility_var_path="Parameters.Engine" name="cluster-algo" description = "cluster method">
                         <Entry id="0" chosen="True">RSMD</Entry>

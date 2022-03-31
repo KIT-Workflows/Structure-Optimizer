@@ -12,7 +12,7 @@ if __name__ == '__main__':
     solv_model = wano_file["Parameters"]["Solvent"]
     conf_method = conf_algo[ wano_file["Parameters"]["Conformational-algo"] ]
     Opt_level = wano_file["Parameters"]["Optimization level"]
-    e_thr = str(float(wano_file["E-thr"]))
+    e_thr = str(float(wano_file["Parameters"]["E-thr"]))
     r_thr = str(float(wano_file["RMSD-thr"]))
 
 

@@ -71,17 +71,10 @@ if __name__ == '__main__':
 	
 	numConfs = int(wano_file["Parameters"]["nconf"]) #int(sys.argv[2])
 	maxAttempts = int(wano_file["Parameters"]["max-attempts"])#int(sys.argv[3])
-	pruneRmsThresh = wano_file["E-thr"] #float(sys.argv[4])
+	pruneRmsThresh = wano_file["Parameters"]["cluster-thr"] #float(sys.argv[4])
 	clusterMethod = wano_file["Parameters"]["cluster-algo"]
 	clusterThreshold = wano_file["RMSD-thr"]
-	minimizeIterations = 0
-
-	# if len(sys.argv) > 5: clusterMethod = sys.argv[5]
-	# else: clusterMethod = "RMSD"
-	# if len(sys.argv) > 6: clusterThreshold = float(sys.argv[6])
-	# else: clusterThreshold = 2.0
-	# if len(sys.argv) > 7: minimizeIterations = int(sys.argv[7]) 
-	# else: minimizeIterations = 0
+	minimizeIterations = wano_file["Parameters"]["max-opt"] 
 
 	suppl = Chem.ForwardSDMolSupplier(input_file)
 	i=0
