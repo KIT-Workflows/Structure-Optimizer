@@ -33,7 +33,7 @@ def write_input(settings,struct_file):
         dftb_in+="  Mixer = Broyden {}\n" #add different charge mixers as options in the .xml file
         dftb_in+="  ReadInitialCharges = %s\n"%(bool2yn[settings['use old charges']])
     dftb_in+="  Charge = %f\n"%(float(settings['charge']))
-
+    
     #if settings['multiplicity'] > 1:
     #    dftb_in+="  SpinPolarisation = Colinear {\n"
     #    dftb_in+="    UnpairedElectrons = %f\n"%(float(settings['multiplicity']-1))
@@ -50,6 +50,25 @@ def write_input(settings,struct_file):
     for element in list(dict.fromkeys(struct.get_chemical_symbols())):
         dftb_in+="    %s = \"%s\"\n"%(element,max_ang_mom[settings['skf']][element])
     dftb_in+="  }\n"
+
+    
+    if settings['disp'] == "D3":
+        dftb_in+= "    Dispersion = SimpleDftD3 {\n"
+        dftb_in+= "    a1 = 0.5719\n"
+        dftb_in+= "     a2 = 3.6017\n"
+        dftb_in+= "     s6 = 1.0\n"
+        dftb_in+= "     s8 = 0.5883\n"
+        dftb_in+= "     }\n\n"
+
+    # dftb_in+= "      Dispersion = DftD3 {\n"
+    # dftb_in+= "      Damping = BeckeJohnson {\n"
+    # dftb_in+= "      a1 = 0.5719\n"
+    # dftb_in+= "      a2 = 3.6017\n"
+    # dftb_in+= "      }\n"
+    # dftb_in+= "       s6 = 1.0\n"
+    # dftb_in+= "       s8 = 0.5883\n" 
+    # dftb_in+= "       }\n\n"
+
     dftb_in+="}\n\n"
 
     if settings['opt']:
@@ -59,8 +78,18 @@ def write_input(settings,struct_file):
         dftb_in+='  MaxSteps = %i\n'%(settings['opt cyc'])
         dftb_in+='  OutputPrefix = \"final_structure\"\n'
         dftb_in+='}\n\n'
+    
+    # dftb_in+= "Dispersion = DftD3 {\n"
+    # dftb_in+= "Damping = BeckeJohnson {\n"
+    # dftb_in+= "a1 = 0.5719\n"
+    # dftb_in+= "a2 = 3.6017\n"
+    # dftb_in+= "}\n"
+    # dftb_in+= "s6 = 1.0\n"
+    # dftb_in+= "s8 = 0.5883\n"
+    # dftb_in+= "}\n\n"
 
     dftb_in+="Options {}\n\n"
+
     dftb_in+="Analysis {\n  CalculateForces = Yes\n}\n\n"
     dftb_in+="ParserOptions {\n  ParserVersion = 7\n}\n"
 

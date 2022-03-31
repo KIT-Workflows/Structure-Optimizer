@@ -14,19 +14,20 @@ def get_settings_from_rendered_wano():
     with open('rendered_wano.yml') as infile:
         wano_file = yaml.full_load(infile)
     
-    settings['follow-up']=wano_file['Follow-up calculation']
-    settings['use old struct']=wano_file['Molecular structure']['Use old structure']
-    settings['use old charges']=wano_file['Initial guess']['Use old charges']
-    settings['charge']=wano_file['Initial guess']['Charge']
-    settings['multiplicity']=wano_file['Initial guess']['Multiplicity']
-    settings['scc']=wano_file['DFTB options']['SCC calculation']
-    settings['scc iter']=50
-    settings['max scc iter']=wano_file['DFTB options']['Max SCC iterations']
-    settings['skf']=wano_file['DFTB options']['Slater-Koster parameters']
-    settings['opt']=wano_file['Type of calculation']['Structure optimisation']
-    settings['opt cyc']=50
-    settings['opt driver']=wano_file['Type of calculation']['Optimisation algorithm']
-    settings['max opt cyc']=wano_file['Type of calculation']['Max optimization cycles']
+    settings['follow-up'] = wano_file['Follow-up calculation']
+    settings['use old struct'] = wano_file['Molecular structure']['Use old structure']
+    settings['use old charges'] = wano_file['Initial guess']['Use old charges']
+    settings['charge'] = wano_file['Initial guess']['Charge']
+    settings['multiplicity'] = wano_file['Initial guess']['Multiplicity']
+    settings['scc'] = wano_file['DFTB options']['SCC calculation']
+    settings['scc iter'] = 50
+    settings['max scc iter'] = wano_file['DFTB options']['Max SCC iterations']
+    settings['skf'] = wano_file['DFTB options']['Slater-Koster parameters']
+    settings['opt'] = wano_file['Type of calculation']['Structure optimisation']
+    settings['opt cyc'] = wano_file['Type of calculation']['Max optimization cycles']
+    settings['opt driver'] = wano_file['Type of calculation']['Optimisation algorithm']
+    settings['max opt cyc'] = wano_file['Type of calculation']['Max optimization cycles']
+    settings['disp'] = wano_file['DFTB options']['Dispersion']
 
     return settings
 

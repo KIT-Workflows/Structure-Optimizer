@@ -31,13 +31,19 @@
             
 		<WaNoDictBox name="DFTB options">
 			<WaNoBool name="SCC calculation">True</WaNoBool>
-			<WaNoInt visibility_condition="%s == True" visibility_var_path="DFTB options.SCC calculation" name='Max SCC iterations'>2000</WaNoInt>
+			<WaNoInt visibility_condition="%s == True" visibility_var_path="DFTB options.SCC calculation" name='Max SCC iterations'>200</WaNoInt>
 
-        	       	<WaNoDropDown name="Slater-Koster parameters">
-                		<Entry id="0" chosen="True">3ob</Entry>
-                		<Entry id="1">mio</Entry>
-	        	</WaNoDropDown>
-            	</WaNoDictBox>
+        	<WaNoDropDown name="Slater-Koster parameters">
+                <Entry id="0" chosen="True">3ob</Entry>
+                <Entry id="1">mio</Entry>
+	        </WaNoDropDown>
+
+			<WaNoDropDown name="Dispersion" description="Dispersion corrections (van der Waals interactions)">
+                <Entry id="0" chosen="True">none</Entry>
+				<Entry id="1" >D3</Entry>
+	        </WaNoDropDown>
+
+        </WaNoDictBox>
             
 		<WaNoDictBox name="Type of calculation">
 			<WaNoBool name="Structure optimisation">True</WaNoBool>
@@ -46,14 +52,13 @@
 				<Entry id="1" chosen="True">ConjugateGradient</Entry>
 				<Entry id="2">gDIIS</Entry>
 			</WaNoDropDown>
-			<WaNoInt visibility_condition='%s == True' visibility_var_path='Type of calculation.Structure optimisation' name="Max optimization cycles">5000</WaNoInt>
+			<WaNoInt visibility_condition='%s == True' visibility_var_path='Type of calculation.Structure optimisation' name="Max optimization cycles">500</WaNoInt>
 	    	</WaNoDictBox>
     </WaNoRoot>
 
     <WaNoExecCommand>
-	export NANOVER=V4
-    	source $NANOMATCH/$NANOVER/local_anaconda/bin/activate
-    	conda activate simstack_kit
+	source /home/ws/gt5111/miniconda3/etc/profile.d/conda.sh
+	conda activate
 	bash ./dftb+.sh
 	</WaNoExecCommand>
 
