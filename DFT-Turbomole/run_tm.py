@@ -132,8 +132,11 @@ if __name__ == '__main__':
     results_dict['title']=settings['title']
     results_dict['energy_unit']='Hartree'
 
-    with open('energy') as infile: results_dict['energy'] = float(infile.readlines()[-2].split()[1])
+    with open('energy') as infile: results_dict['energy'] = float(infile.readlines()[-2].split()[1])    
+    with open('eiger.out') as infile: results_dict['homo'] = float(infile.readlines()[12].split()[5])
+    with open('eiger.out') as infile: results_dict['lumo'] = float(infile.readlines()[13].split()[5])
     with open('eiger.out') as infile: results_dict['homo-lumo gap'] = float(infile.readlines()[14].split()[2])
+
 
     if settings['tddft']:
         results_dict['exc_type']=settings['exc state type']
