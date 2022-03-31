@@ -41,6 +41,7 @@
 			<WaNoDropDown name="Dispersion" description="Dispersion corrections (van der Waals interactions)">
                 <Entry id="0" chosen="True">none</Entry>
 				<Entry id="1" >D3</Entry>
+				<Entry id="2" >LennardJones</Entry>
 	        </WaNoDropDown>
 
         </WaNoDictBox>

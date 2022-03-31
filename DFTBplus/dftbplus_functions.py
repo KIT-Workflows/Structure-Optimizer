@@ -59,6 +59,10 @@ def write_input(settings,struct_file):
         dftb_in+= "     s6 = 1.0\n"
         dftb_in+= "     s8 = 0.5883\n"
         dftb_in+= "     }\n\n"
+    elif settings['disp'] == "LennardJones":
+        dftb_in+= "Dispersion = LennardJones {\n"
+        dftb_in+= "Parameters = UFFParameters {}\n"
+        dftb_in+=  "              }\n\n"
 
     # dftb_in+= "      Dispersion = DftD3 {\n"
     # dftb_in+= "      Damping = BeckeJohnson {\n"
