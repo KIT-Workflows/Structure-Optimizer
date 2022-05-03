@@ -1,19 +1,13 @@
 #! /bin/bash
 
-module purge
+module purge 
+module load intel impi
+module load dftb+
 
-# set PATH to DFTB+ / load module
-
-module load gnu7/7.3.0
-module load openblas/0.2.20
-
-export PATH="/home/ws/gt5111/dftbplus/_build/prog/dftb+/dftb+:$PATH"
 export OMP_NUM_THREADS=$SLURM_NPROCS
 
 python run_dftb+.py
-dftb+ > output
+
+srun dftb+
 
 exit 0
-# /home/celso/Wanos_2020/Leticia/WaNos/symFunc_all.param
-
-# /home/celso/Wanos_2020/Leticia/WaNos/Model.tar
